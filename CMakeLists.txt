@@ -1,6 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+
 project(tetromino_solver)
 
-cmake_minimum_required(VERSION 3.0)
+set(CMAKE_CXX_STANDARD 20)
 
 set(TETROMINO_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 set(TETROMINO_INCLUDE_DIR ${PROJECT_SOURCE_DIR})
@@ -20,10 +22,13 @@ set(TETROMINO_HEADER_FILES
 )
 source_group("Tetromino Headers" FILES ${TETROMINO_HEADER_FILES})
 
-add_executable(tetromino_solver ${TETROMINO_SOURCE_FILES} ${TETROMINO_HEADER_FILES})
-target_include_directories(tetromino_solver PUBLIC ${TETROMINO_INCLUDE_DIR})
-if(MSVC)
-    target_compile_options(tetromino_solver PUBLIC $<$<CONFIG:DEBUG>:/W4>)
-else()
-    target_compile_options(tetromino_solver PUBLIC -std=c++11 -stdlib=libc++)
-endif()
+add_executable(tetromino_solver)
+target_sources(tetromino_solver
+    PUBLIC
+    ${TETROMINO_SOURCE_FILES}
+    PUBLIC FILE_SET HEADERS
+    BASE_DIRS ${TETROMINO_INCLUDE_DIR} FILES
+    ${TETROMINO_HEADER_FILES}
+)
+
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT tetromino_solver)

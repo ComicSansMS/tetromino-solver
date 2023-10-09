@@ -167,7 +167,7 @@ void readProblemFromFile(std::string const& filename)
 
 int main(int argc, char* argv[])
 {
-    /*
+    //*
     if(argc != 2 && argc != 4)
     {
         std::cout << "Usage: \n"
@@ -182,7 +182,7 @@ int main(int argc, char* argv[])
     {
         buildProblemFromString( std::atoi(argv[1]), std::atoi(argv[2]), argv[3]);
     }
-    */
+    /*/
     if(argc != 2) { std::cout << "No file." << std::endl; return 1; }
     std::fstream fin(argv[1]);
     std::string tmp;
@@ -239,5 +239,5 @@ int main(int argc, char* argv[])
               << std::chrono::duration_cast<std::chrono::milliseconds>(t_end - t_start).count() << "ms."
               << std::endl;
 
-    return 0;
+    */
 }
